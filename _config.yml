@@ -72,7 +72,6 @@ exclude:
   - ".git/"
   - ".github/"
   - "*.sh"
-  - "*.md"
   - "README.md"
   - "LICENSE"
   - "assets/css/main.css.map"
