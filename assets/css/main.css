@@ -452,6 +452,8 @@
   --container-max: 72ch;
   --container-narrow: 56ch;
   --container-wide: 90ch;
+  --header-height: 60px;
+  --sidebar-width: 280px;
 }
 
 /* ==========================================================================
@@ -596,9 +598,12 @@ a:hover { color: var(--color-fg-brand-hover); }
 .cluster--center { justify-content: center; }
 
 /* Grid (Intrinsic) */
-.grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.grid--2 { grid-template-columns: repeat(2, 1fr); }
-.grid--auto { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+.grid--2 { grid-template-columns: 1fr; }
+.grid--auto { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+@media (min-width: 600px) {
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* Sidebar Layout */
 .sidebar-layout {
@@ -718,42 +723,6 @@ a:hover { color: var(--color-fg-brand-hover); }
   color: var(--color-brand-700);
 }
 
-/* Mobile drawer */
-@media (max-width: 767px) {
-  .site-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: var(--z-index-modal);
-    width: 280px;
-    max-width: 85vw;
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-1);
-    padding: calc(var(--header-height, 60px) + var(--space-4)) var(--space-4) var(--space-4);
-    background: var(--color-bg-subtle);
-    border-right: none;
-    box-shadow: var(--shadow-xl);
-    transform: translateX(-100%);
-    transition: transform var(--duration-slow) var(--ease-expo-out);
-    overflow-y: auto;
-  }
-
-  .site-menu--open {
-    transform: translateX(0);
-  }
-
-  .site-menu a {
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--text-base);
-  }
-
-  .no-scroll {
-    overflow: hidden;
-  }
-}
-
 :root[data-theme="dark"] .site-menu a:hover,
 :root[data-theme="dark"] .site-menu a[aria-current="page"] {
   background: var(--color-brand-900);
@@ -833,6 +802,8 @@ a:hover { color: var(--color-fg-brand-hover); }
     width: var(--sidebar-width);
     max-width: 85vw;
     flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
     padding: calc(var(--header-height) + var(--space-4)) var(--space-4) var(--space-4);
     background: var(--color-bg-subtle);
     border-right: none;
@@ -842,6 +813,10 @@ a:hover { color: var(--color-fg-brand-hover); }
     overflow-y: auto;
   }
   .site-menu--open { transform: translateX(0); }
+  .site-menu a {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+  }
   .site-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.5);
     opacity: 0; visibility: hidden; pointer-events: none;
@@ -849,6 +824,7 @@ a:hover { color: var(--color-fg-brand-hover); }
     transition: opacity var(--duration-normal), visibility var(--duration-normal);
   }
   .site-overlay--open { opacity: 1; visibility: visible; pointer-events: auto; }
+  .no-scroll { overflow: hidden; }
 }
 
 /* --- SIDEBAR --- */
@@ -1445,6 +1421,39 @@ article.summary hr {
   border: none;
   border-top: 1px solid var(--color-border-subtle);
   margin: var(--space-8) 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE FIXES
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Hero mobile */
+  .hero { padding: var(--space-8) var(--space-4) var(--space-6); }
+  .hero__name { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero__subtitle { font-size: var(--text-base); }
+  .hero__actions { flex-direction: column; gap: var(--space-3); }
+  .hero__actions .btn { width: 100%; text-align: center; }
+  .hero__stats { gap: var(--space-4); }
+  .hero__stat-value { font-size: var(--text-2xl); }
+
+  /* Summary list overflow */
+  .summary__list { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Badges overflow */
+  .badge-cluster { flex-wrap: wrap; }
+
+  /* Prose tables */
+  .prose table,
+  article.summary table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Prose code blocks */
+  .prose pre,
+  article.summary pre { max-width: 100%; }
+
+  /* Project meta */
+  .project__meta { flex-wrap: wrap; gap: var(--space-2); }
+  .project__tag { white-space: nowrap; }
 }
 
 /* ==========================================================================
