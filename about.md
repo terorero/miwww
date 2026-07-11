@@ -2,6 +2,7 @@
 layout: default
 title: "Sobre mí — Devin R. Conde Mancilla"
 description: "Senior SysAdmin con 25+ años de experiencia en infraestructura crítica, seguridad informática y soberanía de datos. Bolivia."
+permalink: /about/
 ---
 
 <section class="hero" aria-labelledby="about-title">

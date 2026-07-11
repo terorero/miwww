@@ -2,6 +2,7 @@
 layout: default
 title: "Contacto — Devin R. Conde Mancilla"
 description: "Contacta conmigo para roles senior de infraestructura, cloud y seguridad. La Paz, Bolivia."
+permalink: /contact/
 ---
 
 <section class="hero" aria-labelledby="contact-title">

@@ -2,6 +2,7 @@
 layout: default
 title: "Proyectos — Devin R. Conde Mancilla"
 description: "Proyectos de infraestructura en producción: Immich, Monitoring Stack, IaC, Backup/DR, Linux Hardening"
+permalink: /projects/
 ---
 
 <section class="section" aria-labelledby="projects-title">
