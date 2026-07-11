@@ -37,6 +37,36 @@
     if (e.key === 'Escape') closeSidebar();
   });
 
+  // --- Theme Toggle ---
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function getCurrentTheme() {
+    return document.documentElement.getAttribute('data-theme') || getSystemTheme();
+  }
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  themeToggle?.addEventListener('click', function() {
+    const current = getCurrentTheme();
+    const next = current === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+  });
+
+  // Listen for system theme changes (only applies when no explicit choice)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('theme')) {
+      // No explicit choice — let CSS fallback handle it
+      document.documentElement.removeAttribute('data-theme');
+    }
+  });
+
   // --- Copy Terminal Code on Click ---
   document.querySelectorAll('pre code').forEach(block => {
     block.addEventListener('click', function() {
