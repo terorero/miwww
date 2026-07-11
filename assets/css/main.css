@@ -469,6 +469,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   tab-size: 4;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1428,35 +1429,63 @@ article.summary hr {
    ========================================================================== */
 
 @media (max-width: 767px) {
-  /* Hero mobile */
+  /* === GLOBAL === */
+  body { overflow-x: hidden; }
+
+  /* === HEADER === */
+  .site-header { padding: 0 var(--space-4); }
+
+  /* === HERO === */
   .hero { padding: var(--space-8) var(--space-4) var(--space-6); }
-  .hero__name { font-size: clamp(2rem, 8vw, 3rem); }
-  .hero__title { font-size: var(--text-base); }
-  .hero__value-prop { font-size: var(--text-sm); }
-  .hero__ctas { flex-direction: column; gap: var(--space-3); }
+  .hero__content { max-width: 100%; overflow-wrap: break-word; }
+  .hero__name { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+  .hero__title { font-size: var(--text-base); max-width: 100%; }
+  .hero__value-prop { font-size: var(--text-sm); max-width: 100%; border-left-width: 2px; padding-left: var(--space-3); }
+  .hero__ctas { flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }
   .hero__ctas .btn { width: 100%; text-align: center; }
-  .hero__stats { gap: var(--space-4); }
+  .hero__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); padding-top: var(--space-6); }
   .hero__stat-value { font-size: var(--text-2xl); }
 
-  /* Summary list overflow */
-  .summary__list { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* === SECTIONS === */
+  .section { padding: var(--space-8) var(--space-4); }
+  .section__header { margin-bottom: var(--space-6); }
+  .section__title { font-size: var(--text-2xl); }
 
-  /* Badges overflow */
+  /* === SUMMARY === */
+  .summary { max-width: 100%; }
+  .summary__list { overflow-x: hidden; }
+  .summary__item { flex-direction: column; gap: var(--space-3); padding: var(--space-3); }
+  .summary__icon { width: 36px; height: 36px; }
+  .summary__text { font-size: var(--text-sm); }
+
+  /* === PROJECTS === */
+  .projects { gap: var(--space-4); }
+  .project__terminal { margin: 0; border-radius: var(--radius-card) var(--radius-card) 0 0; }
+  .project__terminal .terminal__header { border-radius: var(--radius-card) var(--radius-card) 0 0; }
+  .terminal__body { padding: var(--space-3); font-size: var(--text-xs); max-height: 180px; }
+  .project__body { padding: var(--space-4); }
+  .project__title { font-size: var(--text-lg); }
+  .project__meta { flex-wrap: wrap; gap: var(--space-2); font-size: var(--text-xs); }
+  .project__description { font-size: var(--text-sm); }
+  .project__stack { gap: var(--space-1); }
+  .project__stack .badge { font-size: 0.65rem; padding: var(--space-1) var(--space-2); }
+  .project__footer { flex-wrap: wrap; gap: var(--space-2); }
+
+  /* === SKILLS GRID === */
+  .grid { gap: var(--space-4); }
+  .card__stack { gap: var(--space-2); }
+  .badge { font-size: 0.7rem; padding: var(--space-1) var(--space-2); }
+
+  /* === BADGES === */
   .badge-cluster { flex-wrap: wrap; }
 
-  /* Prose tables */
+  /* === PROSE === */
   .prose table,
   article.summary table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-  /* Prose code blocks */
   .prose pre,
   article.summary pre { max-width: 100%; }
 
-  /* Project meta */
-  .project__meta { flex-wrap: wrap; gap: var(--space-2); }
-  .project__tag { white-space: nowrap; }
-
-  /* Experience section */
+  /* === EXPERIENCE === */
   .experience { display: flex; flex-direction: column; gap: var(--space-8); }
   .experience__item { position: relative; padding-left: var(--space-8); }
   .experience__marker { position: absolute; left: 0; top: var(--space-1); width: 12px; height: 12px; border-radius: 50%; background: var(--color-brand-500); border: 2px solid var(--color-bg-canvas); }
@@ -1466,6 +1495,10 @@ article.summary hr {
   .experience__highlights { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
   .experience__highlight { font-size: var(--text-sm); color: var(--color-fg-secondary); line-height: var(--text-base-line); }
   .experience__highlight::before { content: "→ "; color: var(--color-brand-500); font-weight: 600; }
+
+  /* === CONTACT / FOOTER === */
+  .footer__content { text-align: center; }
+  .footer__links { flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
 }
 
 /* ==========================================================================
