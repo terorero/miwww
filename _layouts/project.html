@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<section class="hero" aria-labelledby="project-title">
+  <div class="hero__content animate-in">
+    <a href="{{ '/projects/' | relative_url }}" class="btn btn--ghost btn--sm" style="margin-bottom: var(--space-4);">&larr; Volver a Proyectos</a>
+    <span class="hero__eyebrow">Proyecto</span>
+    <h1 id="project-title" class="hero__name" style="font-size: var(--text-4xl);">{{ page.title }}</h1>
+  </div>
+</section>
+
+{% if page.terminal_title %}
+<section class="section" aria-label="Demostración">
+  <div class="animate-in">
+    <div class="terminal" style="max-width: 72ch;">
+      <div class="terminal__header">
+        <div class="terminal__dots">
+          <span class="terminal__dot terminal__dot--close" aria-hidden="true"></span>
+          <span class="terminal__dot terminal__dot--minimize" aria-hidden="true"></span>
+          <span class="terminal__dot terminal__dot--maximize" aria-hidden="true"></span>
+        </div>
+        <span class="terminal__title">{{ page.terminal_title }}</span>
+      </div>
+      <pre class="terminal__body"><code class="terminal__command" data-prompt="$ ">{{ page.terminal_content }}</code></pre>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section section--alt" aria-label="Detalles del proyecto">
+  <div class="summary animate-in" style="max-width: 72ch;">
+    {% if page.metrics %}
+    <div class="project__meta" style="margin-bottom: var(--space-6); flex-wrap: wrap; gap: var(--space-4);">
+      {% for metric in page.metrics %}
+      <span class="project__meta-item" style="font-size: var(--text-base);"><span class="project__meta-value" style="font-size: var(--text-xl);">{{ metric.value }}</span> {{ metric.label }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="card" style="margin-bottom: var(--space-6);">
+      <p class="project__description" style="font-size: var(--text-lg); max-width: 65ch;">{{ page.description }}</p>
+    </div>
+
+    {% if page.tags %}
+    <div style="margin-bottom: var(--space-6);">
+      <h3 style="font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--color-fg-tertiary); margin-bottom: var(--space-3);">Stack tecnológico</h3>
+      <div class="project__stack">
+        {% for tag in page.tags %}
+        <span class="badge badge--primary">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="cluster" style="gap: var(--space-3);">
+      {% if page.docs_url %}
+      <a href="{{ page.docs_url }}" class="btn btn--primary btn--md" target="_blank" rel="noopener">Ver Documentación</a>
+      {% endif %}
+      {% if page.repo_url %}
+      <a href="{{ page.repo_url }}" class="btn btn--secondary btn--md" target="_blank" rel="noopener">Código Fuente</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{{ content }}
