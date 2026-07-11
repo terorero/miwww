@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<section class="hero" aria-labelledby="post-title">
+  <div class="hero__content animate-in">
+    <a href="{{ '/blog/' | relative_url }}" class="btn btn--ghost btn--sm" style="margin-bottom: var(--space-4);">&larr; Volver al Blog</a>
+    <span class="hero__eyebrow">{{ page.categories.first }}</span>
+    <h1 id="post-title" class="hero__name" style="font-size: var(--text-4xl);">{{ page.title }}</h1>
+    <p class="hero__title" style="font-size: var(--text-lg);">{{ page.description }}</p>
+    <div class="hero__stats" style="border-top: none; padding-top: 0; gap: var(--space-6);">
+      <div class="hero__stat">
+        <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d de %B de %Y' }}</time>
+      </div>
+      {% if page.tags %}
+      <div class="hero__stat">
+        <div class="cluster" style="gap: var(--space-2);">
+          {% for tag in page.tags %}
+          <span class="badge badge--primary">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Contenido del artículo">
+  <article class="summary animate-in" style="max-width: 72ch; font-size: var(--text-lg); line-height: 1.8;">
+    {{ content }}
+  </article>
+</section>
