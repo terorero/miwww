@@ -25,10 +25,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-          bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          bundle config set --local deployment 'true'
+          bundle install --retry 3 --jobs 4
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
