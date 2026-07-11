@@ -4,37 +4,34 @@
 (() => {
   'use strict';
 
-  // --- Mobile Sidebar Toggle ---
+  // --- Mobile Menu Toggle ---
   const menuToggle = document.querySelector('.menu-toggle');
   const siteMenu = document.querySelector('.site-menu');
-  const sidebar = document.querySelector('.sidebar');
-  const sidebarOverlay = document.querySelector('.sidebar-overlay');
 
-  function toggleSidebar() {
-    const isOpen = sidebar.classList.toggle('sidebar--open');
-    sidebarOverlay?.classList.toggle('sidebar-overlay--open', isOpen);
+  function toggleMenu() {
+    const isOpen = siteMenu.classList.toggle('site-menu--open');
     menuToggle?.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('no-scroll', isOpen);
   }
 
-  function closeSidebar() {
-    sidebar?.classList.remove('sidebar--open');
-    sidebarOverlay?.classList.remove('sidebar-overlay--open');
+  function closeMenu() {
+    siteMenu?.classList.remove('site-menu--open');
     menuToggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
   }
 
-  menuToggle?.addEventListener('click', toggleSidebar);
-  sidebarOverlay?.addEventListener('click', closeSidebar);
+  menuToggle?.addEventListener('click', toggleMenu);
 
-  // Close sidebar on nav link click (mobile)
-  document.querySelectorAll('.sidebar__nav-link').forEach(link => {
+  // Close menu on nav link click (mobile)
+  document.querySelectorAll('.site-menu a').forEach(link => {
     link.addEventListener('click', () => {
-      if (window.innerWidth < 768) closeSidebar();
+      if (window.innerWidth < 768) closeMenu();
     });
   });
 
-  // Close sidebar on Escape key
+  // Close menu on Escape key
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeSidebar();
+    if (e.key === 'Escape') closeMenu();
   });
 
   // --- Theme Toggle ---
@@ -114,7 +111,7 @@
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         target.focus({ preventScroll: true });
-        closeSidebar();
+        closeMenu();
       }
     });
   });

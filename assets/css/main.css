@@ -718,6 +718,42 @@ a:hover { color: var(--color-fg-brand-hover); }
   color: var(--color-brand-700);
 }
 
+/* Mobile drawer */
+@media (max-width: 767px) {
+  .site-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: var(--z-index-modal);
+    width: 280px;
+    max-width: 85vw;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+    padding: calc(var(--header-height, 60px) + var(--space-4)) var(--space-4) var(--space-4);
+    background: var(--color-bg-subtle);
+    border-right: none;
+    box-shadow: var(--shadow-xl);
+    transform: translateX(-100%);
+    transition: transform var(--duration-slow) var(--ease-expo-out);
+    overflow-y: auto;
+  }
+
+  .site-menu--open {
+    transform: translateX(0);
+  }
+
+  .site-menu a {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
+  }
+
+  .no-scroll {
+    overflow: hidden;
+  }
+}
+
 :root[data-theme="dark"] .site-menu a:hover,
 :root[data-theme="dark"] .site-menu a[aria-current="page"] {
   background: var(--color-brand-900);
