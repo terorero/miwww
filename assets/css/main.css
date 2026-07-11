@@ -1431,9 +1431,10 @@ article.summary hr {
   /* Hero mobile */
   .hero { padding: var(--space-8) var(--space-4) var(--space-6); }
   .hero__name { font-size: clamp(2rem, 8vw, 3rem); }
-  .hero__subtitle { font-size: var(--text-base); }
-  .hero__actions { flex-direction: column; gap: var(--space-3); }
-  .hero__actions .btn { width: 100%; text-align: center; }
+  .hero__title { font-size: var(--text-base); }
+  .hero__value-prop { font-size: var(--text-sm); }
+  .hero__ctas { flex-direction: column; gap: var(--space-3); }
+  .hero__ctas .btn { width: 100%; text-align: center; }
   .hero__stats { gap: var(--space-4); }
   .hero__stat-value { font-size: var(--text-2xl); }
 
@@ -1454,6 +1455,17 @@ article.summary hr {
   /* Project meta */
   .project__meta { flex-wrap: wrap; gap: var(--space-2); }
   .project__tag { white-space: nowrap; }
+
+  /* Experience section */
+  .experience { display: flex; flex-direction: column; gap: var(--space-8); }
+  .experience__item { position: relative; padding-left: var(--space-8); }
+  .experience__marker { position: absolute; left: 0; top: var(--space-1); width: 12px; height: 12px; border-radius: 50%; background: var(--color-brand-500); border: 2px solid var(--color-bg-canvas); }
+  .experience__period { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--color-fg-tertiary); display: block; margin-bottom: var(--space-2); }
+  .experience__role { font-size: var(--text-lg); font-weight: 600; color: var(--color-fg-primary); margin: 0 0 var(--space-1); }
+  .experience__company { font-size: var(--text-sm); color: var(--color-fg-secondary); margin: 0 0 var(--space-3); }
+  .experience__highlights { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .experience__highlight { font-size: var(--text-sm); color: var(--color-fg-secondary); line-height: var(--text-base-line); }
+  .experience__highlight::before { content: "→ "; color: var(--color-brand-500); font-weight: 600; }
 }
 
 /* ==========================================================================
