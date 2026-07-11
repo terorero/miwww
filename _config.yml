@@ -6,9 +6,8 @@ email: "devin@devinconde.com"
 url: "https://terorero.github.io"
 baseurl: "/miwww"
 
-# Theme
-remote_theme: jekyll/minima
-# theme: minima  # Alternative: use built-in
+# Theme - use built-in minima instead of remote_theme
+theme: minima
 
 # Plugins
 plugins:

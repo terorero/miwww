@@ -1,0 +1,3 @@
+# .github/pages.yml
+# Tell GitHub Pages to use custom workflow instead of native build
+build_type: workflow
