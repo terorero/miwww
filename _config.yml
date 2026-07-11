@@ -6,8 +6,8 @@ email: "devin@devinconde.com"
 url: "https://terorero.github.io"
 baseurl: "/miwww"
 
-# Theme - use built-in minima instead of remote_theme
-theme: minima
+# Theme — custom layouts in _layouts/, no remote theme needed
+# theme: minima
 
 # Plugins
 plugins:
