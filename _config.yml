@@ -1,0 +1,105 @@
+# _config.yml — GitHub Pages Jekyll Configuration for miwww
+title: "Devin R. Conde Mancilla"
+description: "Analista de Infraestructura y Seguridad Informática | Senior SysAdmin | 25+ años | Bolivia"
+author: "Devin R. Conde Mancilla"
+email: "devin@devinconde.com"
+url: "https://terorero.github.io"
+baseurl: "/miwww"
+
+# Theme
+remote_theme: jekyll/minima
+# theme: minima  # Alternative: use built-in
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-relative-links
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: project
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+# SEO
+twitter:
+  username: terorero
+  card: summary_large_image
+
+social:
+  name: Devin R. Conde Mancilla
+  links:
+    - https://www.linkedin.com/in/devin-conde-mancilla-21038315
+    - https://github.com/terorero
+    - https://devinconde.com
+
+# Exclude from processing
+exclude:
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - ".git/"
+  - ".github/"
+  - "*.sh"
+  - "*.md"
+  - "README.md"
+  - "LICENSE"
+  - "assets/css/main.css.map"
+  - "assets/js/main.js.map"
+  - "assets/plugins/"
+  - "assets/js/demo/"
+
+# Include
+include:
+  - _redirects
+  - _headers
+  - feed.xml
+  - sitemap.xml
+  - robots.txt
+
+# Sass
+sass:
+  style: compressed
+  sourcemap: never
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: /blog/page/:num/
+  title: ":title - Página :num"
+  limit: 0
+  sort_field: "date"
+  sort_reverse: true

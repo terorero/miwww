@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    {% feed_meta %}
+    {% seo %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+    <div class="page">
+      <header class="site-header" role="banner">
+        <div class="wrapper">
+          <a class="site-title" href="{{ '/' | relative_url }}" aria-label="Devin R. Conde Mancilla - Inicio">
+            <span class="site-title__mark">DRCM</span>
+          </a>
+          <nav class="site-nav" role="navigation" aria-label="Navegación principal">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <ul id="site-menu" class="site-menu">
+              <li><a href="{{ '/' | relative_url }}">Inicio</a></li>
+              <li><a href="{{ '/projects/' | relative_url }}">Proyectos</a></li>
+              <li><a href="{{ '/blog/' | relative_url }}">Artículos</a></li>
+              <li><a href="{{ '/about/' | relative_url }}">Sobre mí</a></li>
+              <li><a href="{{ '/contact/' | relative_url }}">Contacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main-content" role="main" class="page-content">
+        {{ content }}
+      </main>
+
+      <footer class="site-footer" role="contentinfo">
+        <div class="wrapper">
+          <div class="footer__content">
+            <p class="footer__cta">¿Construimos infraestructura que no falla?</p>
+            <div class="footer__links">
+              <a href="mailto:devin@devinconde.com" class="footer__link">Email</a>
+              <a href="https://linkedin.com/in/devin-conde-mancilla-21038315" class="footer__link" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://github.com/terorero" class="footer__link" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://devinconde.com" class="footer__link" target="_blank" rel="noopener">Web</a>
+            </div>
+            <p class="footer__copyright">&copy; {{ site.time | date: '%Y' }} Devin R. Conde Mancilla. Hecho con Jekyll y tokens de diseño.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  </body>
+</html>

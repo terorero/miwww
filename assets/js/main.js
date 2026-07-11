@@ -1,0 +1,114 @@
+// Main JavaScript — Devin R. Conde Mancilla Portfolio
+// Vanilla JS, no dependencies, progressive enhancement
+
+(() => {
+  'use strict';
+
+  // --- Mobile Sidebar Toggle ---
+  const menuToggle = document.querySelector('.menu-toggle');
+  const siteMenu = document.querySelector('.site-menu');
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+  function toggleSidebar() {
+    const isOpen = sidebar.classList.toggle('sidebar--open');
+    sidebarOverlay?.classList.toggle('sidebar-overlay--open', isOpen);
+    menuToggle?.setAttribute('aria-expanded', isOpen);
+  }
+
+  function closeSidebar() {
+    sidebar?.classList.remove('sidebar--open');
+    sidebarOverlay?.classList.remove('sidebar-overlay--open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  }
+
+  menuToggle?.addEventListener('click', toggleSidebar);
+  sidebarOverlay?.addEventListener('click', closeSidebar);
+
+  // Close sidebar on nav link click (mobile)
+  document.querySelectorAll('.sidebar__nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 768) closeSidebar();
+    });
+  });
+
+  // Close sidebar on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSidebar();
+  });
+
+  // --- Copy Terminal Code on Click ---
+  document.querySelectorAll('pre code').forEach(block => {
+    block.addEventListener('click', function() {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(this);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      const original = this.textContent;
+      navigator.clipboard.writeText(original).then(() => {
+        const toast = document.createElement('div');
+        toast.textContent = 'Copiado';
+        toast.style.cssText = 'position:fixed;bottom:2rem;right:2rem;padding:0.75rem 1.5rem;background:var(--color-fg-primary);color:var(--color-fg-inverse);border-radius:var(--radius-md);z-index:1000;animation:fade-in 0.2s';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      });
+    });
+  });
+
+  // --- Scroll Reveal (IntersectionObserver) ---
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(el =>
+    revealObserver.observe(el)
+  );
+
+  // --- Current Year in Footer ---
+  const yearEl = document.querySelector('[data-year]');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // --- Smooth Scroll for Anchor Links ---
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.focus({ preventScroll: true });
+        closeSidebar();
+      }
+    });
+  });
+
+  // --- Active Nav Highlight on Scroll ---
+  const navLinks = document.querySelectorAll('.site-menu a[href^="#"], .sidebar__nav-link[href^="#"]');
+  const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.toggleAttribute('aria-current', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(section => scrollObserver.observe(section));
+
+})();
+
+// Fade-in animation for toast
+const style = document.createElement('style');
+style.textContent = '@keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }';
+document.head.appendChild(style);
